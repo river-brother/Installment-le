@@ -1,0 +1,141 @@
+body, div, ul, li, ol, dl, dd, dt, p, h1, h2, h3, form, input, span, img{ margin:0; padding:0; box-sizing: border-box;}
+body{margin: 0 auto;}
+li{list-style:none}
+a{text-decoration: none;font-size: 12px;}
+span{font-size: 12px;}
+img{border: none;display: block;}
+em, i{font-style:normal;font-size: 12px;}
+b, strong{font-weight: normal;font-size: 12px;}
+
+.logo{
+    height: 113px;
+}
+.logo h1 a span{
+    display: none;
+}
+.logo h1 a{
+    display: block;
+    width: 120px;
+    height: 38px;
+    margin-left: 32px;
+    margin-top: 38px;
+    float: left;
+}
+.logo h1 a{
+    background: url(../img/Landing/logo.png)no-repeat;
+    /*background-size:120px 38px;*/
+}
+.logo p{
+    float: left;
+    font-size: 18px;
+    color: #afa1ff;
+    padding-top: 55px;
+    padding-left: 40px;
+    background: url(../img/Landing/shuxian2.gif)no-repeat 20px bottom;
+}
+.logo span{
+    float: right;
+    margin: 35px 60px;
+}
+.logo span a{
+    color: #44A0FF;
+}
+
+.register{
+    height: 606px;
+    background: #ebebeb;
+    overflow: hidden;
+}
+.register .top{
+    width: 1200px;
+    height: 50px;
+    background: #f9f9f9;
+    margin: 0 auto;
+    margin-top: 50px;
+    border-left: 5px solid #3b9bff;
+    color: #3b9bfe;
+    font-size: 18px;
+    line-height: 50px;
+    padding-left: 45px;
+}
+.register .content{
+    width: 1200px;
+    height: 506px;
+    background: white;
+    margin: 0 auto;
+}
+.register .content form{
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 500px;
+}
+.register .content form em{
+//  display: block;
+//  width: 20px;
+//  height: 20px;
+    float: right;
+    margin: 30px -388px;
+}
+.register .content form li{
+    width: 430px;
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.register .content form li span{
+    display: block;
+    width: 70px;
+    height: 15px;
+    float: left;
+    margin-top: 15px;
+}
+.register .content form li span b{
+    float: right;
+}
+.register .content form input{
+    width: 345px;
+    height: 45px;
+}
+.register .content form #verify{
+    width: 190px;
+    height: 45px;
+}
+.register .content form #gain_verify{
+    width: 140px;
+    height: 45px;
+    background: #44A0FF;
+    color: white;
+    float: right;
+    border: none;
+}
+.register .content form #name{
+    float: right;
+}
+.register .content form #_password{
+    float: right;
+}
+.register .content form #transaction_pin{
+    float: right;
+}
+.register .content form #but{
+    background: #44A0FF;
+    color: white;
+    border: none;
+    float: right;
+    margin: 0px 68px;
+}
+.register .content form #verify{
+    margin-left: 15px;
+}
+.register .content form p{
+    margin: 35px 85px;
+}
+.register .content form p #_checkbox{
+    width: 15px;
+    height: 15px;
+    float: left;
+}
+.register .content form p b,span{
+    float: left;
+}
+

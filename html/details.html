@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<link rel="stylesheet" type="text/css" href="../css/details.css"/>
+		<style type="text/css">
+			.nav{margin: 0px 0px;}
+			.nav .classify ul{
+				display: none;
+			}
+			.nav .classify:hover  ul{
+				display: block;
+			}
+		</style>
+		<script src="../lib/jquery/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/arttemplate/template-native.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/jquery_plugins/jquery.elevateZoom-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<div id="host_heder"></div>
+		<div class="content"></div>
+		<div id="vice_footer"></div>
+		
+		<script type="text/html" id="index_html">
+			<% for (var i = 0; i<list.length; i++) {
+				var prod = list[i];
+			%>
+			<ul id="cent">
+				<li><a href="####"><%= prod.home %></a></li>
+				<li><a href="####"><%= prod.mp %></a></li>
+				<li><a href="####"><%= prod.Android %></a></li>
+				<li><a href="####"><%= prod.XM %></a></li>
+			</ul>
+			<div class="commodity">
+				<div class="left">
+					<div class="img">
+						<img src="<%= prod.sheet1 %>" id="zoom" data-zoom-image="<%= prod.sheet2 %>"/>
+					</div>
+					<ul>
+						<li><a href="####"><img src="<%= prod.sheet3 %>"/></a></li>
+						<li><a href="####"><img src="<%= prod.sheet4 %>"/></a></li>
+						<li><a href="####"><img src="<%= prod.sheet5 %>"/></a></li>
+					</ul>
+				</div>
+				
+				<div class="center">
+					<p class="p"><span><%= prod.zy %></span><h1><%= prod.name %></h1></p>
+					<p class="p2"><%= prod.jiesao %></p>
+					<ul>
+						<li><span><%= prod.original %> :</span><b><%= prod.cash %></b></li>
+						<li><span><%= prod.price %> :</span><h2><%= prod.xianjia %></h2></li>
+						<li><a href="####"><%= prod.comment %></a></li>
+					</ul>
+					<div class="top1">
+						<span class="span"><%= prod.color %> :</span>
+						<p><img src="<%= prod.tu1 %>"/><span><%= prod.color1 %></span></p>
+						<p><img src="<%= prod.tu2 %>"/><span><%= prod.color2 %></span></p>
+						<p><img src="<%= prod.tu3 %>"/><span><%= prod.color3 %></span></p>
+					</div>
+					<div class="top2">
+						<span><%= prod.memory %> :</span>
+						<p><%= prod.xiao %></p><p><%= prod.zhong %></p><p><%= prod.da %></p>
+					</div>
+					<div class="top3">
+						<span><%= prod.inventory %> :</span>
+						<p><em><%= prod.remain %></em><a href=""><%= prod.num %></a><b><%= prod.jian %></b></p>
+					</div>
+					<div class="top4">
+						<span><%= prod.sendto %> :</span>
+						<select name="">
+							<option value=""><%= prod.dizhi %></option>
+						</select>
+						<p><b><%= prod.xianhuo %>,</b><em><%= prod.yugao %></em></p>
+					</div>
+					<div class="top5">
+						<span><%= prod.ratio %> : </span>
+						<select name="">
+							<option value=""><%= prod.proportion %></option>
+						</select>
+					</div>
+					<div class="top6">
+						<span><%= prod.month %> :</span>
+						<a href="####"><%= prod.month0 %></a>
+						<a href="####"><%= prod.month2 %></a>
+						<a href="####"><%= prod.month3 %></a>
+						<a href="####"><%= prod.month6 %></a>
+						<a href="####"><%= prod.month9 %></a>
+						<a href="####"><%= prod.month12 %></a>
+						<a href="####"><%= prod.month15 %></a>
+						<a href="####"><%= prod.month18 %></a>
+						<a href="####"><%= prod.month24 %></a>
+					</div>
+					<div class="top7">
+						<span><%= prod.monthly %> :</span>
+						<a href="">￥<%= prod.moneys %></a><a href="####"><img src="<%= prod.gth %>"/></a>
+					</div>
+					<button id="ljgm"><%= prod.ljgm %></button>
+				<!--	<button id="jrgwc"><%= prod.jrgwc %></button>-->
+				</div>
+				
+				<div class="right">
+					<img id="img2" src="<%= prod.right1 %>"/>
+					<div class="xuxian"></div>
+					<ul>
+						<li><img src="<%= prod.li_img %>"/><span><%= prod.li_span %></span></li>
+						<li><img src="<%= prod.li_img2 %>"/><span><%= prod.li_span2 %></span></li>
+						<!--<li><img src="<%= prod.li_img3 %>"/><span><%= prod.li_span3 %></span></li>
+						<li><img src="<%= prod.li_img4 %>"/><span><%= prod.li_span4 %></span></li>
+						<li><img src="<%= prod.li_img5 %>"/><span><%= prod.li_span5 %></span></li>-->
+					</ul>
+					<div class="lianxi">
+						<p><%= prod.li_span6 %><br><%= prod.li_span7 %></p>
+					</div>
+					<!--<div class="over">
+						<a href="####"><%= prod.li_span8 %></a>
+						<a href="####"><%= prod.li_span8 %></a>
+					</div>-->
+				</div>
+			</div>
+			<% } %>
+		</script>
+	
+		<script type="text/javascript">
+			$(function(){
+				$.getJSON("../mock/details.json",function(responseData){
+					var data = {
+						list : responseData
+					};
+					var html = template("index_html", data);
+					$(".content").append(html);
+					
+					$("#zoom").elevateZoom({
+				  		lensShape : "round",
+				  		zoomType : "lens"
+			        });
+				});			
+			})
+		</script>	
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品详情</title> 
+		<link rel="stylesheet" type="text/css" href="../css/goods.css"/>
+		<script src="../lib/jquery/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/arttemplate/template-native.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="host_heder"></div>
+		<div class="top"></div>
+		<div class="content">
+			<ul class="foreshow">
+				<li><a href=""><b>昨日</b><span>23:23</span><b>抢购中</b></a></li>
+				<li><a href=""><span>11:11</span><b>即将开始</b></a></li>
+				<li><a href=""><span>18:18</span><b>即将开始</b></a></li>
+			</ul>
+			<div class="timer">
+				<p>距离本场介绍还有</p>
+				<ul>
+					<li id="hour"></li><span>:</span>
+					<li id="min"></li><span>:</span>
+					<li id="second"></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="shopp"></div>
+		<div id="vice_footer"></div>
+
+<!--倒计时jquery代码********-->
+		<script type="text/javascript">
+			$(function(){
+				window.onload = function() {
+					var second = 7200;  //秒
+					var timer = setInterval(function(){
+						second--;
+						var	_second = ("0" + Math.floor(second % 60)).slice(-2),
+							_min = ("0" + Math.floor(second / 60) % 60).slice(-2),
+							_hour = ("0" + Math.floor(second / (60 * 60))% 24).slice(-2);
+//							_days = ("0" + Math.floor(second / (60 * 60 * 24))).slice(-2);
+						var str = _hour+"小时"+_min+"分"+_second+"秒";
+						$("#hour").text(_hour);
+						$("#min").text(_min);
+						$("#second").text(_second);
+						
+						if (second === 0) {
+							clearInterval(timer)
+						}
+					},1000)
+				}
+			})	
+		</script>
+<!--*****************-->	
+		<script type="text/javascript">
+			$.getJSON("../mock/goshopp.json",function(responseData){
+				var data = {
+					list : responseData
+				};
+				var html = template("goshopp", data);
+				$(".shopp").append(html);
+			});
+
+		</script>
+		
+		<script type="text/html" id="goshopp">
+			<%	for (var i = 0, len = list.length; i < len; i++) {
+				var product = list[i];
+			%>
+			<a href="javascript:;">
+			<div class="box">
+				<ul>
+					<div class="left">
+						<img src="<%= product.img %>"/>
+					</div>					
+					<li>
+						<p><%= product.name %></p>
+						<p><%= product.state %></p>
+						<p><span><%= product.month %></span><b><%= product.remain %></b></p>
+						<p><em><%= product.money %></em><strong><%= product.stroke %></strong><i><%= product.rush %></i></p>
+					</li>
+				</ul>
+			</div>
+			</a>
+			<% } %>
+		</script>
+	</body>
+</html>

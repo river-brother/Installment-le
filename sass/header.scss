@@ -1,0 +1,33 @@
+body, div, ul, li, ol, dl, dd, dt, p, h1, h2, h3, form, input, span, img{ margin:0; padding:0; box-sizing: border-box;}
+body{margin: 0 auto;}
+li{list-style:none}
+a{text-decoration: none;font-size: 12px;}
+span{font-size: 12px;}
+img{border: none;display: block;}
+em, i{font-style:normal;font-size: 12px;}
+b, strong{font-weight: normal;font-size: 12px;}
+
+.header{
+    height: 35px;
+    background: #f3f3f3;
+}
+.header ul{
+    float: right;
+}
+.header ul li{
+    float: left;
+    padding-left: 20px;
+}
+.header ul li a:hover{
+    border-bottom: 1px solid black;
+}
+.header ul li a{
+    color: black;
+}
+.header ul li:nth-child(7){
+    padding-left: 28px;
+    background: url(../img/Landing/shuxian.gif)no-repeat 14px center;
+}
+.header ul li:nth-child(7) a{
+    color: red;
+}

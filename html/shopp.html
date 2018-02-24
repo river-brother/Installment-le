@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0px 0px;}
+			.nav .classify ul{display: none;}
+			.nav .classify:hover  ul{display: block;}
+			#content{height: 300px;}
+			#add{display: block;width: 20px;height: 20px;margin: 0px 0px;float: left;}
+			table{border: 1px solid black;width: 1000px;margin: 10px 28px;}
+			td:nth-child(6) a{width: 100px;height: 30px;display: block;background: red;color: white;text-align: center;line-height: 30px;margin: 11px 0px;}
+			td b{display:block;width: 25px;height: 20px;background: red; text-align: center;line-height: 20px;}
+			table {border-collapse: collapse;}
+			td {border:1px solid;}
+			span{float: left;}
+			#gwc{font-size: 16px;padding: 0px 28px;width: 120px;height: 50px;background: red;color: white;text-align: center;
+			line-height: 50px;display: block;float: right;margin: 0px 234px;}
+			#host_heder .navs li:nth-child(1) a{color: black;border: none;}
+		</style>
+		<script src="../lib/jquery/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/jquery_plugins/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="host_heder"></div>
+		<div id="content">
+			
+			<table rules="all">
+				<tr>
+					<td>商品标题</td>
+					<td>商品样式</td>
+					<td>商品规格</td>
+					<td>商品价格</td>
+					<td>商品数量</td>
+					<td>操作</td>
+				</tr>
+				<tr>
+					<td>小米手机</td>
+					<td>黑色</td>
+					<td>4G</td>
+					<td>2999</td>					
+					<td><span>数量：</span><span class="jia"><b>+</b></span><input type="" name="" id="add" value="1" /><span class="jian"><b>-</b></span></td>
+					<td><a href="javascript:;">加入购物车</a></td>
+				</tr>
+				<tr>
+					<td>华为手机</td>
+					<td>白色</td>
+					<td>4G</td>
+					<td>3999</td>					
+					<td><span>数量：</span><span class="jia"><b>+</b></span><input type="" name="" id="add" value="1" /><span class="jian"><b>-</b></span></td>
+					<td><a href="javascript:;">加入购物车</a></td>
+				</tr>
+			</table>
+			
+			<a href="shopp.cart.html" target="_blank" id="gwc">查看购物车</a>
+		</div>
+		<div id="vice_footer"></div>
+		
+		<script type="text/javascript">
+			$(function(){
+				$("table a").click(function(){
+					// 获取当前超级链接所在行 jQuery 对象
+					// var $tr = $(this).parent().parent();
+					var $tr = $(this).parents("tr");
+					// 获取当前添加到购物车行中商品信息，创建对应对象保存
+					var product = {
+						id : $tr.children().eq(0).text(),
+						name : $tr.children().eq(1).text(),
+						price : $tr.children().eq(2).text(),
+						desc : $tr.children().eq(3).text(),
+						num : $tr.children().eq(4).children().eq(2).val(),
+						amount : 1
+					};
+	
+					// 将当前选购商品添加到保存购物车信息的数组中
+					// 使用 jQuery 的 cookie 插件来实现 Cookie 的保存、查询操作
+					// 使用方法： 保存 -- $.cookie(key, value, options) 
+					//			  查询 -- $.cookie(key)
+					// 设置 $.cookie.json = true 可以实现自动的 JSON.parse() 或 JSON.stringify() 方法调用
+					// 配置 cookie
+					$.cookie.json = true;
+					// 读取已保存的购物车数组
+					var products = $.cookie("products") || [];
+					// 判断是否当前商品已有选购过
+					var index = exist(product.id, products);
+					if (index !== -1) // 之前已有选购，则只需要修改数量
+						products[index].amount += 1;
+					else // 将当前选购商品对象添加到数组保存
+						products.push(product);
+	
+					// 将 products 中所有选购商品信息保存到 cookie 中
+					$.cookie("products", products, {expires : 7});
+	
+					alert("添加成功");
+				});
+			});
+	
+			// 判断 指定的 id 在所有选购商品的数组中是否存在该 id 所表示的商品对象
+			// 返回存在的商品对象在数组中的下标，不存在则返回 -1
+			function exist(id, products) {
+				for (var i = 0, len = products.length; i < len; i++) {
+					if (products[i].id == id)
+						return i;
+				}
+	
+				return -1;
+			}
+			
+			$(".jian,.jia").click(function(){
+				// 找到 - 号所在行
+				var $tr = Number($(this).siblings("input").val());
+				// 该行绑定数据在数组中索引
+				console.log($tr);
+//				var index = exist($tr.children().eq(1).text(), products);
+				// 获取该行对应数组中的商品对象
+//				var product = products[index];
+                console.log(this)
+				if ($(this).is(".jia")) { // 数量 +
+					$tr += 1;
+				} else { // 数量 -
+					if ($tr <= 1)
+						return;
+					// 在数组元素中减数量
+					$tr -= 1;
+				}
+				console.log($tr)
+				$("#add").val($tr);
+				// 保存回 cookie
+				$.cookie("product", $tr, {expires:7});
+				// 页面显示内容修改
+				
+			});
+		</script>
+	</body>
+</html>

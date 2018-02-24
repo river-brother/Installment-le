@@ -1,0 +1,111 @@
+body, div, ul, li, ol, dl, dd, dt, p, h1, h2, h3, form, input, span, img{ margin:0; padding:0; box-sizing: border-box;}
+body{margin: 0 auto;}
+li{list-style:none}
+a{text-decoration: none;font-size: 12px;}
+span{font-size: 12px;}
+img{border: none;display: block;}
+em, i{font-style:normal;font-size: 12px;}
+b, strong{font-weight: normal;font-size: 12px;}
+
+.logo{
+    height: 113px;
+}
+.logo h1 a span{
+    display: none;
+}
+.logo h1 a{
+    display: block;
+    width: 120px;
+    height: 38px;
+    margin-left: 32px;
+    margin-top: 38px;
+    float: left;
+}
+.logo h1 a{
+    background: url(../img/Landing/logo.png)no-repeat;
+    /*background-size:120px 38px;*/
+}
+.logo p{
+    float: left;
+    font-size: 18px;
+    color: #afa1ff;
+    padding-top: 55px;
+    padding-left: 40px;
+    background: url(../img/Landing/shuxian2.gif)no-repeat 20px bottom;
+}
+
+.content{
+    height: 725px;
+    background: url(../img/Landing/beijing.gif);
+}
+.content p{
+    padding: 125px 150px;
+}
+.content form{
+    float: right;
+    margin: -317px 165px;
+}
+.content form em{
+    float: left;
+    margin: 0px 0px;
+}
+.content form ul li b{
+    float: right;
+}
+.content form ul li:nth-child(1){
+    width: 292px;
+    height: 55px;
+    margin: 15px 0;
+    background: white url(../img/Landing/shuxian3.jpg)no-repeat 50px center;
+     margin-bottom: 35px;
+}
+.content form ul li:nth-child(2){
+    width: 292px;
+    height: 55px;
+    margin: 15px 0;
+    background: white url(../img/Landing/shuxian3.jpg)no-repeat 50px center;
+    
+}
+.content form ul li #names{
+    width: 232px;
+    height: 55px;
+    border: none;
+    float: left;
+}
+.content form ul li #_password{
+    width: 232px;
+    height: 55px;
+    border: none;
+    float: left;
+}
+.content form ul li:nth-child(1) span{
+    display: block;
+    float: left;
+    width: 60px;
+    height: 55px;
+    background: url(../img/Landing/denglu_03.jpg)no-repeat center;  
+}
+.content form ul li:nth-child(2) span{
+    display: block;
+    float: left;
+    width: 60px;
+    height: 55px;
+    background: url(../img/Landing/denglu_07.jpg)no-repeat center;  
+}
+.content form ul #but{
+    width: 292px;   
+    height: 55px;
+    border: none;
+    background: #44a0ff;
+    color: white;
+    margin-top: 10px;
+}
+.content form ul li:nth-child(4){
+    padding-top: 15px;
+}
+.content form ul li a{
+    color: cornflowerblue;
+}
+.content form ul li:nth-child(4) span{
+    margin-left: 179px;
+}

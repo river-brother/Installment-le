@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/register.css"/>
+		<script src="../lib/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div id="vice_header"></div>
+		
+		<div class="logo">
+				<h1><a href="../index.html"><span>分期乐</span></a></h1>
+				<p>欢迎注册</p>
+				<span><b>已有账号?</b><a href="">立即登录</a></span>
+		</div>
+		
+		<div class="register">
+			<div class="top">
+				注册新用户
+			</div>
+			<div class="content">
+				<form>
+					<li>
+						<span><b>手机号码</b></span>
+						<input type="text" name="" id="name" placeholder="请输入手机号" />
+						<em id="name_hint"></em>
+					</li>
+					<li>
+						<span><b>短信验证码</b></span>
+						<input type="text" id="verify" placeholder="请输入验证码"/><button id="gain_verify">获取验证码</button>
+					</li>
+					<li>
+						<span><b>登录密码</b></span>
+						<input type="password" name="" id="_password" placeholder="请输入6-16位字符或数字"/>
+						<em id="_password_hint"></em>
+					</li>
+					<li>
+						<span><b>交易密码</b></span>
+						<input type="password" name="" id="transaction_pin" placeholder="与登录密码不同"/>
+						<em id="transaction_pin_hint"></em>
+					</li>
+					<input type="submit" id="but" name="" value="同意协议并注册"/><br />
+					<p><input type="checkbox" name="" id="_checkbox" checked="checked"/><b>同意</b><span>《分期乐注册协议》</span></p>
+				</form>
+			</div>
+		</div>
+		
+		
+		<div id="vice_footer"></div>
+		
+		<script type="text/javascript">
+			$(function(){
+				// user
+				var user_Boolean = false;
+				var password_Boolean = false;
+				var varconfirm_Boolean = false;
+				var emaile_Boolean = false;
+				var Mobile_Boolean = false;
+				
+				// Mobile
+				$('#name').blur(function(){
+				  if ((/^1[34578]\d{9}$/).test($("#name").val())){
+				    $('#name_hint').html("正确").css("color","green");
+				    Mobile_Boolean = true;
+				  }else {
+				    $('#name_hint').html("不正确").css("color","red");
+				    Mobile_Boolean = false;
+				  }
+				});
+				
+				// password
+				$('#_password').blur(function(){
+				  if ((/^[a-z0-9_-]{6,16}$/).test($("#_password").val())){
+				    $('#_password_hint').html("正确").css("color","green");
+				    password_Boolean = true;
+				  }else {
+				    $('#_password_hint').html("不正确").css("color","red");
+				    password_Boolean = false;
+				  }
+				});
+				
+				// transaction_pin
+				$('#transaction_pin').blur(function(){
+				  if ((/^[a-z0-9_-]{6,16}$/).test($("#transaction_pin").val())){
+				    $('#transaction_pin_hint').html("正确").css("color","green");
+				    password_Boolean = true;
+				  }else {
+				    $('#transaction_pin_hint').html("不正确").css("color","red");
+				    password_Boolean = false;
+				  }
+				});
+				
+				// click
+				$('#but').click(function(){
+				if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean == true){
+				    alert("注册成功");
+				}else {
+				    alert("请完善信息");
+				}
+				});
+			})
+		</script>
+	</body>
+
+	
+</html>

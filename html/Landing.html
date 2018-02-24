@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/Landing.css"/>
+	  	<script src="../lib/jquery/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="vice_header"></div>
+		
+		<div class="logo">
+				<h1><a href="../index.html"><span>分期乐</span></a></h1>
+				<p>欢迎登陆</p>
+		</div>
+		
+		<div class="content">
+			<p><img src="../img/Landing/wenzhi.gif"/></p>
+			<form>
+				<ul>
+					<li>
+						<span></span>
+						<div><input type="text" id="names" placeholder="手机号" /><b id="upwd_info"></b></div>
+						<em id="name_hint"></em>
+					</li>
+					<li>
+						<span></span>
+						<div><input type="password" id="_password" placeholder="登录密码" /><b id="mima"></b></div>
+						<em id="_password_hint"></em>
+					</li>
+					<input type="submit" id="but" value="登    录"/>
+					<li>
+						<a href="">注册新用户</a>
+						<span>忘记密码</span>
+					</li>
+				</ul>
+			</form>
+		</div>
+		
+		<div id="vice_footer"></div>
+		
+		<script type="text/javascript">
+			$(function(){
+				var user_Boolean = false;
+				var password_Boolean = false;
+				var varconfirm_Boolean = false;
+				var emaile_Boolean = false;
+				var Mobile_Boolean = false;
+				// Mobile
+				$('#names').blur(function(){
+				  if ((/^1[34578]\d{9}$/).test($("#names").val())){
+				    $('#name_hint').html("正确").css("color","green");
+				    Mobile_Boolean = true;
+				  }else {
+				    $('#name_hint').html("不正确").css("color","red");
+				    Mobile_Boolean = false;
+				  }
+				});
+				
+				$('#_password').blur(function(){
+				  if ((/^1[34578]\d{9}$/).test($("#_password").val())){
+				    $('#_password_hint').html("正确").css("color","green");
+				    Mobile_Boolean = true;
+				  }else {
+				    $('#_password_hint').html("不正确").css("color","red");
+				    Mobile_Boolean = false;
+				  }
+				});
+				
+				// click
+				$('#but').click(function(){
+				if(user_Boolean && password_Boolean && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean == true){
+				    alert("注册成功");
+				}else {
+				    alert("请完善信息");
+				}
+				});
+			})
+		</script>
+	</body>
+</html>

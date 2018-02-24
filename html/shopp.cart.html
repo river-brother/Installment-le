@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0px 0px;}
+			.nav .classify ul{display: none;}
+			.nav .classify:hover  ul{display: block;}
+			table{border: 1px solid black;width: 1000px;margin: 10px 28px;}
+			td:nth-child(6) a{width: 100px;height: 30px;display: block;background: red;color: white;text-align: center;line-height: 30px;margin: 11px 0px;}
+			td b{display:block;width: 25px;height: 20px;background: red; text-align: center;line-height: 20px;}
+			table {border-collapse: collapse;}
+			td {border:1px solid;}
+			span{float: left;}
+			.add, .minus {width: 20px;height: 30px;line-height: 30px;display: inline-block; text-align: center; border: 1px solid; cursor: default;}
+		</style>
+		<script src="../lib/jquery/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/arttemplate/template-native.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../lib/jquery_plugins/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="host_heder"></div>
+			<table>
+				<tr>
+					<td><label><input type="checkbox" class="ck_all">全选</label></td>
+					<td>商品标题</td>
+					<td>商品样式</td>
+					<td>商品规格</td>
+					<td>商品价格</td>
+					<td>数量</td>
+					<td>小计</td>
+					<td>操作</td>
+				</tr>
+				<tr>
+					<td colspan="7" style="text-align: right;">合计</td>
+					<td class="total">0.00</td>
+				</tr>
+		</table>
+		<a href="javascript:void(0);" class="del_checked">删除选中商品</a>
+		<a href="javascript:void(0);" class="clear_cart">清空购物车</a>
+		<div id="vice_footer"></div>
+		
+		<!-- artTemplate 模板 -->
+		<script type="text/html" id="product_template">
+			<% for (var i = 0, len = list.length; i < len; i++) {
+				var product = list[i];
+			%>
+				<tr>
+					<td><input type="checkbox" class="ck_prod"></td>
+					<td><%= product.id %></td>
+					<td><%= product.name %></td>
+					<td><%= product.price %></td>
+					<td><%= product.desc %></td>
+					<td><%= product.num %></td>
+					<!--<td><span class="minus"> - </span> <input type="text" size="1" value="<%= product.amount %>" class="amount"> <span class="add"> + </span></td>-->
+					<td class="sub"><%= product.num * product.desc %></td>
+					<td><a href="javascript:void(0);">删除</a></td>
+				</tr>
+			<% } %>
+		</script>
+		
+		<script type="text/javascript">
+			$(function() {
+				// 配置 
+				$.cookie.json = true;
+				// 读取所有购物车选购商品的数组
+				var products = $.cookie("products") || [];
+				// 如果数组长度为0，表示购物车为空
+				console.log(products);
+				if (products.length === 0) {
+					alert("购物车为空");
+					location = "shopp.html";
+					return;
+				}
+				// 有购买商品，则准备渲染模板引擎的数据
+				var data = {
+					list : products
+				};
+				// 使用模板引擎渲染所有选购商品的数据
+				var html = template("product_template", data);
+				$("table tr:last").before(html);
+	
+				/* 点击"删除"链接，删除单行商品 */
+				$("table a").click(function(){
+					// 获取当前点击的 "删除" 链接所在行
+					var $tr = $(this).parents("tr");
+					/* 在 cookie 中删除该行商品 */
+					// 找出在数组中的元素删除
+					var index = exist($tr.children().eq(1).text(), products);
+					products.splice(index, 1);
+					// 将数组覆盖保存回 cookie
+					$.cookie("products", products, {expires:7});
+					// 从 DOM 布局结构中删除该行
+					$tr.remove();
+	
+					// 更新合计
+					calcTotal();
+	
+					// 判断是否购物车为空
+					if (products.length == 0){
+						alert("购物车为空");
+						location = "shopp.html";
+					}
+				});
+	
+				/* 修改数量 */
+				// 点击 +/- 号修改数量
+				$(".minus,.add").click(function(){
+					// 找到 - 号所在行
+					var $tr = $(this).parents("tr");
+					// 该行绑定数据在数组中索引
+					var index = exist($tr.children().eq(1).text(), products);
+					// 获取该行对应数组中的商品对象
+					var product = products[index];
+	
+					if ($(this).is(".add")) { // 数量 +
+						product.amount += 1;
+					} else { // 数量 -
+						if (product.amount <= 1)
+							return;
+						// 在数组元素中减数量
+						product.amount -= 1;
+					}
+					
+					// 保存回 cookie
+					$.cookie("products", products, {expires:7});
+					// 页面显示内容修改
+					$tr.find(".amount").val(product.amount);
+					// 更新页面显示小计
+					$tr.find(".sub").text(product.price * product.amount);
+	
+					// 更新显示合计
+					calcTotal();
+				});
+				// 输入修改数量
+				// 获取焦点，将原有数量暂存
+				var _amount = 0;
+				$(".amount").focus(function(){
+					_amount = $(this).val();
+				});
+				// 推动焦点，设置数量
+				$(".amount").blur(function(){
+					if(!/^[1-9]\d*$/.test($(this).val())) { // 格式有误
+						$(this).val(_amount);
+						alert("输入数量格式有误");
+						return;
+					}
+	
+					if ($(this).val() == _amount) // 未修改数量
+						return;
+	
+					var $tr = $(this).parents("tr");
+					// 该行绑定数据在数组中索引
+					var index = exist($tr.children().eq(1).text(), products);
+					// 获取该行对应数组中的商品对象
+					var product = products[index];
+					// 设置商品数量为文本框中输入的数量值
+					product.amount = Number($(this).val());
+					// 保存回 cookie
+					$.cookie("products", products, {expires:7});
+					// 更新页面显示小计
+					$tr.find(".sub").text(product.price * product.amount);
+					// 更新显示合计
+					calcTotal();
+				});
+	
+				/* 全选效果 */
+				$(".ck_all").click(function(){
+					// 将所有商品行前的复选框选中状态设置为"全选"一致的状态
+					$(".ck_prod").prop("checked", $(this).prop("checked"));
+					// 刷新显示合计金额
+					calcTotal();
+				});
+				// 商品行前复选框点击效果
+				$(".ck_prod").click(function(){
+					// 已选中筛选框个数和所有复选框个数相同，则说明是全选
+					if($(".ck_prod:checked").length == $(".ck_prod").length)
+						$(".ck_all").prop("checked", true);
+					else
+						$(".ck_all").prop("checked", false);
+	
+					// 刷新显示合计金额
+					calcTotal();
+				});
+	
+				/* 删除选中商品 */
+				$(".del_checked").click(function(){
+					if ($(".ck_prod:checked").length == 0)
+						return;
+					else {
+						if (confirm("是否删除")){
+							$(".ck_prod:checked").each(function(index, element){
+								// 选中筛选框所在行
+								var $tr = $(element).parents("tr");
+								// 该行绑定数据在数组中索引
+								var idx = exist($tr.children().eq(1).text(), products);
+								// 从数组中删除元素
+								products.splice(idx, 1);
+								// 页面中移除节点
+								$tr.remove();
+							});
+							// 覆盖保存回cookie中
+							$.cookie("products", products, {expires:7});
+							// 刷新显示合计金额
+							calcTotal();
+							// 判断是否购物车为空
+							if (products.length == 0){
+								alert("购物车为空");
+								location = "demo1_商品详情页面.html";
+							}
+						}
+					}
+					
+				});
+	
+				/* 清空购物车 */
+				$(".clear_cart").click(function(){
+					if (confirm("是否清空购物车")){
+						// 清空购物车，删除 cookie
+						$.removeCookie("products");
+						// 跳转页面
+						location = "shopp.html";
+					}
+				});
+	
+				// 计算合计的函数
+				function calcTotal() {
+					// 获取所有选中行，累加行中的小计金额
+					var sum = 0;
+					$(".ck_prod:checked").each(function(index, element){
+						sum += Number($(element).parents("tr").children(".sub").text());
+					});
+					// 显示合计金额
+					$(".total").text(sum);
+				}
+			});
+	
+			// 判断在所有选购商品的数组中是否存在指定 id 所表示的商品对象
+			// 返回存在的商品对象在数组中的下标，不存在则返回 -1
+			function exist(id, products) {
+				for (var i = 0, len = products.length; i < len; i++) {
+					if (products[i].id == id)
+						return i;
+				}
+	
+				return -1;
+			}
+	</script>
+	</body>
+</html>

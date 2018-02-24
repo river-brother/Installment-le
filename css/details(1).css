@@ -1,0 +1,346 @@
+body, div, ul, li, ol, dl, dd, dt, p, h1, h2, h3, form, input, span, img {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  margin: 0 auto; }
+
+li {
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  font-size: 12px; }
+
+span {
+  font-size: 12px; }
+
+img {
+  border: none;
+  display: block; }
+
+em, i {
+  font-style: normal;
+  font-size: 12px; }
+
+b, strong {
+  font-weight: normal;
+  font-size: 12px; }
+
+.content {
+  height: 760px;
+  background: #f6f6f6; }
+
+.content #cent {
+  padding-top: 22px;
+  margin-bottom: 44px;
+  margin-left: 20px; }
+
+.content #cent li {
+  float: left;
+  background: url(../img/indenx/xiaoyuhao.jpg) no-repeat 0px center; }
+
+.content #cent li:nth-child(1) {
+  background: none; }
+
+.content #cent li:nth-child(5) {
+  background: none; }
+
+.content #cent li a:hover {
+  border-bottom: 1px solid #606060; }
+
+.content #cent li a {
+  color: #606060;
+  font-size: 14px;
+  margin: 0 15px; }
+
+.content .commodity {
+  width: 1200px;
+  height: 685px;
+  margin: 0 auto;
+  background: white; }
+
+.content .commodity .left {
+  width: 370px;
+  float: left; }
+
+.content .commodity .left .img {
+  display: block;
+  width: 370px;
+  height: 360px;
+  position: relative; }
+
+.content .commodity .left .img img {
+  width: 235px;
+  height: 265px;
+  margin: 47.5px auto; }
+
+.content .commodity .left ul li {
+  width: 50px;
+  height: 55px;
+  border: 1px solid #f0f0f0;
+  float: left;
+  margin: 0 5px; }
+
+.content .commodity .left ul li img {
+  width: 35px;
+  height: 45px;
+  margin: 0px auto; }
+
+.content .commodity .center {
+  width: 646px;
+  height: 685px;
+  float: left; }
+
+.content .commodity .center .p {
+  margin-top: 25px;
+  float: left; }
+
+.content .commodity .center .p span {
+  width: 40px;
+  height: 20px;
+  background: red;
+  float: left;
+  margin: 4px 0px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  color: white;
+  margin-right: 5px; }
+
+.content .commodity .center h1 {
+  float: left;
+  color: #666666;
+  font-size: 20px;
+  margin: 25px 10px; }
+
+.content .commodity .center .p2 {
+  width: 570px;
+  float: left;
+  color: #8f8080; }
+
+.content .commodity .center ul {
+  width: 597px;
+  height: 87px;
+  background: #F2F2F2;
+  margin-top: 25px;
+  float: left; }
+
+.content .commodity .center ul li:nth-child(1) {
+  float: left;
+  width: 500px; }
+
+.content .commodity .center ul li:nth-child(2) {
+  float: left; }
+
+.content .commodity .center ul li span {
+  color: #5f5f5f;
+  margin: 20px; }
+
+.content .commodity .center ul li:nth-child(1) {
+  margin: 10px 0px; }
+
+.content .commodity .center ul li:nth-child(2) span {
+  margin: 10px 20px;
+  float: left; }
+
+.content .commodity .center ul li h2 {
+  margin: 8px -10px;
+  color: red;
+  float: left; }
+
+.content .commodity .center ul li b {
+  color: #5f5f5f;
+  text-decoration: line-through; }
+
+.content .commodity .center ul li span {
+  color: #5f5f5f;
+  margin: 20px; }
+
+.content .commodity .center ul li a {
+  float: right; }
+
+.content .commodity .center .top1 {
+  float: left;
+  margin-top: 33px; }
+
+.content .commodity .center .top1 .span {
+  float: left; }
+
+.content .commodity .center .top1 p {
+  width: 90px;
+  height: 35px;
+  border: 1px solid red;
+  float: left; }
+
+.content .commodity .center .top1 img {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin: 5px 5px; }
+
+.content .commodity .center .top1 span {
+  float: left;
+  margin: 8px 5px; }
+
+.content .commodity .center .top2 {
+  float: left;
+  width: 500px;
+  margin-top: 15px; }
+
+.content .commodity .center .top2 span {
+  float: left;
+  margin: 5px 5px;
+  margin-right: 5px; }
+
+.content .commodity .center .top2 p {
+  float: left;
+  width: 100px;
+  height: 30px;
+  border: 1px solid red;
+  line-height: 30px;
+  text-align: center; }
+
+.content .commodity .center .top3 {
+  float: left;
+  width: 500px;
+  margin-top: 15px; }
+
+.content .commodity .center .top3 span {
+  float: left;
+  margin: 5px 5px; }
+
+.content .commodity .center .top3 p {
+  float: left;
+  margin: 1px 0px; }
+
+.content .commodity .center .top3 p a {
+  color: red; }
+
+.content .commodity .center .top4 {
+  float: left;
+  margin-top: 15px; }
+
+.content .commodity .center .top4 span {
+  float: left;
+  margin: 5px 5px; }
+
+.content .commodity .center .top4 select {
+  float: left;
+  font-size: 12px; }
+
+.content .commodity .center .top4 p {
+  float: left;
+  padding: 0 15px; }
+
+.content .commodity .center .top4 p b {
+  color: blue;
+  margin-right: 10px; }
+
+.content .commodity .center .top5 {
+  float: left;
+  width: 500px;
+  margin-top: 40px; }
+
+.content .commodity .center .top5 span {
+  float: left;
+  margin: 5px 5px; }
+
+.content .commodity .center .top6 {
+  float: left;
+  margin-top: 15px;
+  width: 500px; }
+
+.content .commodity .center .top6 span {
+  float: left;
+  margin: 5px 5px; }
+
+.content .commodity .center .top6 a {
+  display: block;
+  width: 50px;
+  height: 30px;
+  border: 1px solid #C5CFDE;
+  float: left;
+  color: black;
+  margin-right: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  line-height: 30px; }
+
+.content .commodity .center .top6 a:nth-child(9) {
+  margin-left: 54px; }
+
+.content .commodity .center .top7 {
+  float: left;
+  width: 600px; }
+
+.content .commodity .center .top7 span {
+  float: left;
+  margin: 10px 5px; }
+
+.content .commodity .center .top7 a {
+  float: left;
+  margin: 5px 0px;
+  color: red;
+  font-size: 20px; }
+
+.content .commodity .center .top7 img {
+  float: left;
+  margin: 6px 5px; }
+
+.content .commodity .center button {
+  float: left;
+  background: #44A0FF url(../img/gouwuche.jpg) no-repeat 15px center;
+  width: 150px;
+  height: 40px;
+  border: none;
+  margin: 5px 5px;
+  color: white; }
+
+.content .commodity .right {
+  width: 177px;
+  height: 685px;
+  float: left; }
+
+.content .commodity .right #img2 {
+  margin-top: 35px;
+  margin-bottom: 25px; }
+
+.content .commodity .right .xuxian {
+  width: 177px;
+  height: 1px;
+  border-bottom: #e4e4e4 1px dashed;
+  margin-bottom: 25px; }
+
+.content .commodity .right ul {
+  width: 177px;
+  height: 75px;
+  border-bottom: #e4e4e4 1px dashed; }
+
+.content .commodity .right ul li {
+  float: left;
+  width: 150px;
+  margin-bottom: 15px; }
+
+.content .commodity .right ul li:nth-child(1) {
+  float: left; }
+
+.content .commodity .right ul li img {
+  float: left;
+  margin-right: 15px; }
+
+.content .commodity .right ul li span {
+  float: left; }
+
+.content .commodity .right .lianxi {
+  float: left;
+  background: url(../img/lianxi.jpg) no-repeat;
+  margin-top: 30px; }
+
+.content .commodity .right .lianxi p {
+  color: #a05f5f;
+  font-size: 12px;
+  margin-left: 50px; }
+
+/*# sourceMappingURL=details.css.map */
